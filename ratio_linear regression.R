@@ -1,24 +1,22 @@
-#This is to fit a linear regression between the ratio and the difference. 
-
-
 #My first code March 10th
 
-data<-read.csv("Manure Linear Regression.csv")
+Articles<-read.csv("Manure Linear Regression.csv")
 
+#March 11
+plot(Articles$SV, Articles$dif)
 
+model.SV <- lm(dif~SV,data=Articles)
 
-
-plot(data$SV, data$dif)
-
-model.SV <- lm(dif~SV,data=data)
-
-deneme<-data.frame(SV=seq(-17,17,length=50))
+ID<-data.frame(SV=seq(-17,17,length=50))
 
 #plot simple linear regression model
 
-plot(data$SV, data$dif)
+plot(Articles$SV, Articles$dif)
 
-lines(deneme$SV,predict(model.SV,newdata=deneme))
+lines(ID$SV,predict(model.SV,newdata=ID))
+
+
+
 
 
 
