@@ -1,9 +1,9 @@
-ID,Latitude,Longitude,Year,Surface area (m2),Manure volume (m3),SV,Highest air temperature,Highest manure temperature,dif,Lowest air temperature,Lowest manure temperature,dife of manure and air,doi
-1.1,43°45?N, 80°40?W,2010-11,729.7,1970.1,0.37,22.2,20,-2.2,,,,https://doi.org/10.1016/j.agrformet.2017.12.184
-1.3,43°45?N, 80°40?W,2013,729.7,1751.2,0.42,20.3,19,-1.3,,,,https://doi.org/10.1016/j.agrformet.2017.12.184
-7,45° 15'N,75° 49'W,2016,1257,2891.1,0.43,23.4,21.6,-1.8,,,,https://doi.org/10.1080/10962247.2019.1629359
-14.1,45° 15'N,75° 09'W,2013,4140,10207,0.41,21.2,21.2,0,NA,NA,,https://doi.org/10.1016/j.biortech.2016.06.031
-14.2,45° 15'N,75° 09'W,2014,4140,9931,0.42,22.3,20.2,-2.1,NA,NA,,https://doi.org/10.1016/j.biortech.2016.06.031
-15,37°10?N,101°20?W,2015,10000,58000,0.17,41.1,25,-16,-17.8,1.3,19.1,https://doi.org/10.2134/jeq2005.0198a
-20,49° 54'N,99° 49'W,2018,1034,3108,0.33,19.4,15,-4.4,-17.4,0.2,17.6,Brandon Farm
-21,49° 05'N,122° 54'W,2019-20,1891,4170,0.45,17.7,20.3,2.6,4.2,6.8,2.6,Seabreeze Farm(BC)
+ID,Latitude,Longitude,Year,Surface area (m2),Manure volume (m3),SV,Highest air temperature,Highest manure temperature,dif,Lowest air temperature,Lowest manure temperature,dif_low,doi,,
+1.1,43°45'N, 80°40?W,2010-11,729.7,1970.1,0.37,22.2,20,-2.2,,,,https://doi.org/10.1016/j.agrformet.2017.12.184,,
+1.3,43°45'N, 80°40?W,2013,729.7,1751.2,0.42,20.3,19,-1.3,,,,https://doi.org/10.1016/j.agrformet.2017.12.184,,
+7,45° 15'N,75° 49'W,2016,1257,2891.1,0.43,23.4,21.6,-1.8,,,,https://doi.org/10.1080/10962247.2019.1629359,,
+14.1,45° 15'N,75° 09'W,2013,4140,10207,0.41,21.2,21.2,0,NA,NA,,https://doi.org/10.1016/j.biortech.2016.06.031,,
+14.2,45° 15'N,75° 09'W,2014,4140,9931,0.42,22.3,20.2,-2.1,NA,NA,,https://doi.org/10.1016/j.biortech.2016.06.031,,
+15,37°10?N,101°20?W,2001,10000,58000,0.17,28.3,25,-16,-17.8,1.3,19.1,https://doi.org/10.2134/jeq2005.0198a,,
+20,49° 54'N,99° 49'W,2018,1034,3108,0.33,19.4,15,-4.4,-17.4,0.2,17.6,Brandon Farm,,
+21,49° 05'N,122° 54'W,2019-20,1891,4170,0.45,17.7,20.3,2.6,4.2,6.8,2.6,Seabreeze Farm(BC),,
