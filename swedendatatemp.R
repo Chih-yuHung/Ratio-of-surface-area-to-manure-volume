@@ -23,7 +23,7 @@ list(depth.mean)
 # June = 0.6114575 , July = 0.8159436 , August = 1.1245895
 
 
-#Mean AT calulation with R 
+#Mean AT calculation with R 
 
 
 swedendata2$MeanAT<-(swedendata2$AirTmax1+swedendata2$AirTmin1)/2
@@ -31,4 +31,14 @@ ATmean<-tapply(swedendata2$MeanAT, swedendata2$Month, mean)
 list(ATmean)
 
 # June =  16.293333 , July = 14.783871 , August = 16.338710
+
+# Calculation of Manure Volume -  radius(r) = 10 meters
+
+#June
+volumejune = pi * 100 * 0.6114575
+volumejuly = pi * 100 * 0.8159436
+volumeaugust = pi * 100 * 1.1245895
+list(volumejune, volumejuly, volumeaugust)
+
+
 
