@@ -15,6 +15,18 @@ plot(Articles$SV, Articles$dif)
 
 lines(ID$SV,predict(model.SV,newdata=ID))
 
+# Calculations for swedendata
+# Warmest manure temperature = June: 17.206099
+# Warmest Air Temperature = August : 16.338710
+17.206099-16.338710
+# dif =  0.867389 = 0.87
+
+#Surface area = (20/2)^2*PI
+
+swedensurfacearea = pi * 100
+list(swedensurfacearea)
+
+
 
 
 
