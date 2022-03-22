@@ -26,6 +26,13 @@ lines(ID$SV,predict(model.SV,newdata=ID))
 swedensurfacearea = pi * 100
 list(swedensurfacearea)
 
+#Surface/ Manure Volume(warmest manure's volume) Ratio
+
+# Volume in July : 256.3362 m3
+
+SVratio = 314.1593/256.3362
+list(SVratio)
+
 
 
 
