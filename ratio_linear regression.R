@@ -32,11 +32,21 @@ list(swedensurfacearea)
 
 SVratio = 314.1593/256.3362
 list(SVratio)
+# SVratio = 1.225575
+
+#New row adding
+
+df<-Articles
+row_to_add <- df[9,]
+row_to_add
+df<- rbind(df, row_to_add)
+tail(df)
+
+new_row<- data.frame(NA,NA,NA,NA,314.16,256.34,1.23,NA,NA,0.87,NA,NA,NA,'sweden', row.names = "9")
+new_row
 
 
-
-
-
-
-
+names(new_row) <- names(df)
+df<-rbind(df, new_row)
+tail(df)
 
