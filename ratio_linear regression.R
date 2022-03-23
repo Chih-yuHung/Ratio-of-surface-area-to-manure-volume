@@ -36,17 +36,22 @@ list(SVratio)
 
 #New row adding
 
-df<-Articles
-row_to_add <- df[9,]
-row_to_add
-df<- rbind(df, row_to_add)
-tail(df)
+newRow<-data.frame(ID= "22", 
+                    Latitude = "NA",
+                    Longitude = "NA",
+                    Year = "NA",
+                    Surface.area..m2. = "NA",
+                    Manure.volume..m3. = "NA",
+                    SV= "NA",
+                    Highest.air.temperature = "NA",
+                    Highest.manure.temperature = "NA",
+                    dif = "NA",
+                    Lowest.air.temperature = "NA",
+                    Lowest.manure.temperature = "NA",
+                    dif_low = "NA",
+                    doi = "NA")
+print(newRow)                    
+#rbind
 
-new_row<- data.frame(NA,NA,NA,NA,314.16,256.34,1.23,NA,NA,0.87,NA,NA,NA,'sweden', row.names = "9")
-new_row
-
-
-names(new_row) <- names(df)
-df<-rbind(df, new_row)
-tail(df)
-
+Articles<- rbind(Articles, newRow)
+print(Articles)
