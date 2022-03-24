@@ -57,7 +57,11 @@ for (i in 1:36) {
     VS_con[i]<-VS_ava[i]*f.m[i]
      }
   temp[i]<-VS_con[i]*B0
+<<<<<<< HEAD
   CH4.potential<-sum(VS_loaded)*B0
+=======
+  CH4.potential<-sum(VS_loaded[25:36])*B0
+>>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
   CH4_sel<-round(sum(temp[25:36]),3)
   MCF<-round(CH4_sel/CH4.potential,2)
 }
