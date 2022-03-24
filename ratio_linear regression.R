@@ -64,3 +64,4 @@ lines(prediction$SV, predict(model.SV,newdata = prediction))
 View(Articles)
 
 
+
