@@ -62,3 +62,4 @@ plot(Articles$SV, Articles$dif)
 lines(prediction$SV, predict(model.SV,newdata = prediction))
 
 View(Articles)
+
