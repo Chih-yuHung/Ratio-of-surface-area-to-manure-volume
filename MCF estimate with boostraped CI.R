@@ -29,24 +29,18 @@ temp.dif<-c(temp.predict[,2],temp.predict[,3])#it's the lowest dif and highest d
 
 
 #Now we can use the MCF calculator to see the change of MCF
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 T.avg.m<-read.table("monthly avg T.txt",header=TRUE) # monthly average
 
 #This is an R procedure example how to calculate MCF for different locations. 
 library(weathermetrics) #convert C to K
 
-=======
-=======
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
+
 library(weathermetrics) #convert C to K
 
 T.avg.m<-read.table("monthly avg T.txt",header=TRUE) # monthly average
 
-<<<<<<< HEAD
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
-=======
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
+
 #Required input, which don't influence MCF
 VS_Yr<-1200  #kg/yr
 VS_LQD<-100  #100%
@@ -60,8 +54,7 @@ f_Tmin<-1.0  #degree C
 f_T2d<-3.0   #T2 damping, degree C
 E_eff<-95    #95%
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 M.rm<-ifelse(T.avg.m$Removal.two=="Y",1,0)#convert it for calculation
 #Calculate the MCF for the input locations
 #We're runing two scenarios, low (-3.398) and high (+0.720) 
@@ -73,9 +66,7 @@ for (k in 1:3){
   M.rm<-ifelse(T.avg.m[,3+k]=="Y",1,0)#convert it for calculation
   Manure.rm<-rep(M.rm,3) # for stabilization 3 yr
   T.sel<-T.avg.m[,3] #Use Atlantic Canada for example
-=======
-=======
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
+}
 #Obtain removal scenarios from my STOTEN study
 removal<-read.csv("removal month.csv",header=TRUE)
 
@@ -128,29 +119,19 @@ for (k in 1:3403){
   M.rm<-rm
   Manure.rm<-rep(M.rm,3) # for stabilization 3 yr
   T.sel<-T.avg.m[,k]
-<<<<<<< HEAD
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
-=======
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
+
   print(paste("Station sequence",k))
   source("MCF calculator_single.R",echo = F)
   MCF.2[k]<-MCF
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 print(MCF.2)#0.35 for one removal, 0.24 for two removal, 0.18 for three removal
 
 #MCF.high is the high temperature difference
 
-=======
-=======
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
+
 
 #Put the results in a table
 results<-rbind(summary(MCF.high),summary(MCF.low),summary(MCF.2))
 row.names(results)<-c("MCF.high","MCF.low","MCF.2")
 write.csv(results,"Adjusted MCF estimate.csv",col.names = TRUE,row.names = TRUE)
-<<<<<<< HEAD
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
-=======
->>>>>>> 8bcda19e17e6e5164b6f108ab1605de549f2cbde
