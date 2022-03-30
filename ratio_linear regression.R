@@ -74,26 +74,21 @@ Temp<-read.csv("Manure Linear Regression.csv")
 #the removal significantly decreased the manure volume and influence the result
 #CY, March 27, 2022
 Temp<-Temp[c(-6,-9),]
-#assign types for the data
-Temp$type<-c("tank","tank","tank","earthen storage","earthen storage","lagoon","tank")
-
-format_pval <- function(pval){
-  pval <- scales::pvalue(pval, accuracy= 0.001, add_p = TRUE)
-  gsub(pattern = "(=|<)", replacement = " \\1 ", x = pval)
-}
 
 #Linear regression and plot
-Temp.lm<-lm(dif~SV,data=Temp)
-a<-round(Temp.lm$coefficients[1],2)       #obtain the coeffiecients
-b<-round(Temp.lm$coefficients[2],1)
-R2<-round(summary(Temp.lm)$r.squared,3)   #0.631
-p.value<-round(summary(Temp.lm)$coefficients[2,4],3) #0.033
-
+#Temp.lm<-lm(dif~SV,data=Temp)
+# a<-round(Temp.lm$coefficients[1],2)       #obtain the coeffiecients
+# b<-round(Temp.lm$coefficients[2],1)
+# R2<-round(summary(Temp.lm)$r.squared,3)   #0.631
+# p.value<-round(summary(Temp.lm)$coefficients[2,4],3) #0.033
+Temp.cor<-cor.test(Temp$SV,Temp$dif)
+R<-round(Temp.cor$estimate,3) #0.795
+p.value<-round(Temp.cor$p.value,3) #0.033
 #scatter plot and linear model
-#Output 900 x 600
+#Output 800 x 600
 ggplot(aes(x=SV,y=dif),data=Temp)+
   geom_point(aes(color=type),size=3)+
-  scale_color_manual(values=c("#999999", "#E69F00", "#56B4E9"))+ # color change
+  scale_color_manual(values=c("#999999", "#E69F00"))+ # color change
   theme_classic()+                                               # remove gray background
   xlim(0.3,0.46)+                                           #set xy limit
   ylim(-5,3)+
@@ -108,9 +103,9 @@ ggplot(aes(x=SV,y=dif),data=Temp)+
   xlab("Ratio of surface area to manure volume")+           # set xy label
   ylab("Temperature difference between manure and air (°C)")+
   geom_smooth(method='lm', se=FALSE,color="black")+         #add linear regression
-  annotate("text", label = paste("y = ", a ," + ",
-                        b,"x", sep = ""),x = 0.33,y=0.5, size = 5) +
-  annotate("text", label = "atop(R^2 == 0.631,italic(P) == 0.033)" ,x = 0.33,y=-0.2, size = 5,parse=TRUE)
+  #annotate("text", label = paste("y = ", a ," + ",
+  #                      b,"x", sep = ""),x = 0.33,y=0.5, size = 5) +
+  annotate("text", label = "atop(R == 0.795,italic(P) == 0.033)" ,x = 0.33,y=-0.2, size = 5,parse=TRUE)
                            
                            
                            
