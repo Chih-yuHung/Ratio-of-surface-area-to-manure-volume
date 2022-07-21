@@ -4,11 +4,11 @@
 library(boot)
 
 ratio<-read.csv("Manure Linear Regression.csv")
-ratio<-ratio[-6,] #Look likes an outlier
+ratio<-ratio[c(-6,-9,-10:-13),] #Look likes an outlier
 #do the bootstrap
 set.seed(2022)
 SV.n<-30 #number of samples we want to boostrap everytime
-B<-100 #bootstrap sample size
+B<-10000 #bootstrap sample size
 #Obtain the boostrap samples
 Boot.SV<-matrix(sample(ratio$SV,size=B*SV.n,
                 replace=TRUE),ncol=B,nrow=SV.n)
@@ -25,7 +25,9 @@ temp.lm<-lm(dif~SV,data=ratio)
 new<-data.frame(SV=Boot.SV.mean)
 temp.predict<-predict.lm(temp.lm,new,interval="confidence")
 #obtain possible difference of the temperature
-temp.dif<-c(temp.predict[,2],temp.predict[,3])#it's the lowest dif and highest dif
+low<-quantile(temp.predict[,2],prob=0.025,names=FALSE) #-3.398
+up<-quantile(temp.predict[,3],prob=0.975,names=FALSE) #0.720
+temp.dif<-c(low,up)#it's the lowest dif and highest dif
 
 
 #Now we can use the MCF calculator to see the change of MCF
