@@ -37,12 +37,6 @@ T.avg.m<-read.table("monthly avg T.txt",header=TRUE) # monthly average
 #This is an R procedure example how to calculate MCF for different locations. 
 library(weathermetrics) #convert C to K
 
-
-library(weathermetrics) #convert C to K
-
-T.avg.m<-read.table("monthly avg T.txt",header=TRUE) # monthly average
-
-
 #Required input, which don't influence MCF
 VS_Yr<-1200  #kg/yr
 VS_LQD<-100  #100%
@@ -57,18 +51,9 @@ f_T2d<-3.0   #T2 damping, degree C
 E_eff<-95    #95%
 
 
-M.rm<-ifelse(T.avg.m$Removal.two=="Y",1,0)#convert it for calculation
 #Calculate the MCF for the input locations
 #We're runing two scenarios, low (-3.398) and high (+0.720) 
 #under the two removal scenario, early spring-early fall
-
-#MCF.low is the low temperature difference
-MCF.low<-c()
-for (k in 1:3){
-  M.rm<-ifelse(T.avg.m[,3+k]=="Y",1,0)#convert it for calculation
-  Manure.rm<-rep(M.rm,3) # for stabilization 3 yr
-  T.sel<-T.avg.m[,3] #Use Atlantic Canada for example
-}
 #Obtain removal scenarios from my STOTEN study
 removal<-read.csv("removal month.csv",header=TRUE)
 
@@ -79,10 +64,16 @@ max.month<-apply(T.avg.m,2,which.max)
 T.avg.low<-T.avg.m
 T.avg.high<-T.avg.m
 
+#Apply the temperature difference to the max three months
 for(i in length(T.avg.m)) {
-T.avg.low[max.month[i],]<-T.avg.m[max.month[i],]+temp.dif[1]
-T.avg.high[max.month[i],]<-T.avg.m[max.month[i],]+temp.dif[2]
+T.avg.low[c(max.month[i]-1,max.month[i],max.month[i]+1),]<-T.avg.m[c(max.month[i]-1,max.month[i],max.month[i]+1),]+temp.dif[1]
+T.avg.high[c(max.month[i]-1,max.month[i],max.month[i]+1),]<-T.avg.m[c(max.month[i]-1,max.month[i],max.month[i]+1),]+temp.dif[2]
 }
+# #Apply the temperature difference to the max months only
+# for(i in length(T.avg.m)) {
+#   T.avg.low[max.month[i],]<-T.avg.m[max.month[i],]+temp.dif[1]
+#   T.avg.high[max.month[i],]<-T.avg.m[max.month[i],]+temp.dif[2]
+# }
 
 
 #MCF.low is the low temperature difference
@@ -98,7 +89,7 @@ for (k in 1:3403){
   MCF.low[k]<-MCF
 }
 
-print(MCF.2)#0.35 for one removal, 0.24 for two removal, 0.18 for three removal
+summary(MCF.low) #min:0.1, mean:0.167, max 0.26
 
 #MCF.high is the high temperature difference
 MCF.high<-c()
@@ -113,6 +104,8 @@ for (k in 1:3403){
   MCF.high[k]<-MCF
 }
 
+summary(MCF.high) #min:0.11, mean:0.214, max 0.33
+
 #Use the unmodified temperature to calculate MCF 
 MCF.2<-c()
 for (k in 1:3403){
@@ -121,19 +114,14 @@ for (k in 1:3403){
   M.rm<-rm
   Manure.rm<-rep(M.rm,3) # for stabilization 3 yr
   T.sel<-T.avg.m[,k]
-
   print(paste("Station sequence",k))
   source("MCF calculator_single.R",echo = F)
   MCF.2[k]<-MCF
 }
-
-print(MCF.2)#0.35 for one removal, 0.24 for two removal, 0.18 for three removal
-
-#MCF.high is the high temperature difference
-
-
+summary(MCF.2) #min:0.11, mean:0.204, max 0.32
 
 #Put the results in a table
-results<-rbind(summary(MCF.high),summary(MCF.low),summary(MCF.2))
+results<-as.data.frame(rbind(summary(MCF.high),summary(MCF.low),summary(MCF.2)))
+results$diff<-c(results[1,4]/results[3,4],results[2,4]/results[3,4],1)
 row.names(results)<-c("MCF.high","MCF.low","MCF.2")
 write.csv(results,"Adjusted MCF estimate.csv",col.names = TRUE,row.names = TRUE)
