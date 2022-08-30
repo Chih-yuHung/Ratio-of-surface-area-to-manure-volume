@@ -4,7 +4,7 @@
 library(boot)
 
 ratio<-read.csv("Manure Linear Regression.csv")
-ratio<-ratio[c(-6,-9,-10:-13),] #Look likes an outlier
+ratio<-ratio[c(-6,-9),] #9 is from Sweden
 #do the bootstrap
 set.seed(2022)
 SV.n<-30 #number of samples we want to boostrap everytime
@@ -16,8 +16,10 @@ Boot.SV<-matrix(sample(ratio$SV,size=B*SV.n,
 Boot.SV.mean<-colMeans(Boot.SV)
  
 #Obtain the percentile
-#Boot.low<-quantile(Boot.SV.mean,prob=0.025,names=FALSE) #0.3903
-#Boot.up<-quantile(Boot.SV.mean,prob=0.975,names=FALSE) #0.4173
+# Boot.low<-quantile(Boot.SV.mean,prob=0.025,names=FALSE) #0.3903
+# Boot.up<-quantile(Boot.SV.mean,prob=0.975,names=FALSE) #0.4173
+# Boot.low<-quantile(Boot.SV.mean,prob=0.01,names=FALSE) #0.388
+# Boot.up<-quantile(Boot.SV.mean,prob=0.99,names=FALSE) #0.419
 
 #We're going to apply this to the linear regression 
 #and obtain 95% CI for the temperature difference
@@ -32,8 +34,8 @@ temp.dif<-c(low,up)#it's the lowest dif and highest dif
 
 #Now we can use the MCF calculator to see the change of MCF
 
-T.avg.m<-read.table("monthly avg T.txt",header=TRUE) # monthly average
-
+#T.avg.m<-read.table("monthly avg T.txt",header=TRUE) # monthly average
+T.avg<-read.table("1990-2019 monthly avg T.txt",header=TRUE) #gigantic table for avg. T for 3403 locations and 30years
 #This is an R procedure example how to calculate MCF for different locations. 
 library(weathermetrics) #convert C to K
 
