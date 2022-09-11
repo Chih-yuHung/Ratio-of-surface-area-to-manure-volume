@@ -111,6 +111,7 @@ ggplot(aes(x=SV,y=dif),data=Temp)+
 #Replot because I want to combine the two figures together
 #The other figure is the simulation results.
 #800x600
+par(mar=c(4,5,4,4))
 plot(0,
      xlab=expression(paste("Surface area / manure volume (",m^-1,")")),
      ylab=expression(paste("T"["diff"]~"(",degree,"C)")),

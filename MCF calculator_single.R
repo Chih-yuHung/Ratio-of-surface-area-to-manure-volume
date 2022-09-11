@@ -65,7 +65,7 @@ for (i in 1:36) {
   CH4.potential<-sum(VS_loaded[25:36])*B0
 
   CH4_sel<-round(sum(temp[25:36]),3)
-  MCF<-round(CH4_sel/CH4.potential,2)
+  MCF<-round(CH4_sel/CH4.potential,3)
 }
 
 #To know the CH4 production for every month

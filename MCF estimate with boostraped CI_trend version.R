@@ -91,7 +91,7 @@ for (k in 1:3403){
   }
 }
 
-summary(MCF.low) #min:0.09, mean:0.176, max 0.33
+summary(MCF.low) #min:0.091, mean:0.176, max 0.330
 
 #MCF.high is the high temperature difference
 MCF.high<-c()
@@ -109,7 +109,7 @@ for (k in 1:3403){
   }
 }
 # about 14 mins
-summary(MCF.high) #min:0.10, mean:0.2159, max 0.41
+summary(MCF.high) #min:0.103, mean:0.2159, max 0.409
 
 #Use the unmodified temperature to calculate MCF 
 MCF.2<-c()
@@ -127,24 +127,63 @@ for (k in 1:3403){
   }
 }
 summary(MCF.2) #min:0.10, mean:0.208, max 0.39
-name.list<-rep(name.l,each=30)
+
+#Obtain station ID
+name.l<-read.table("monthly avg T.txt",header=T)
+name.list<-rep(colnames(name.l),each=30)
 yr<-rep(1990:2019,3403)
 MCF.2<-MCF.2 %>% 
   cbind(name.list,yr) %>%
-  `colnames<-`(c("MCF","ID","year")) %>%
+  `colnames<-`(c("MCF.2","ID","year")) %>%
    as.data.frame()
 MCF.h<-MCF.high %>% 
   cbind(name.list,yr) %>%
-  `colnames<-`(c("MCF","ID","year")) %>%
+  `colnames<-`(c("MCF.h","ID","year")) %>%
   as.data.frame()
 MCF.l<-MCF.low %>% 
   cbind(name.list,yr) %>%
-  `colnames<-`(c("MCF","ID","year")) %>%
+  `colnames<-`(c("MCF.l","ID","year")) %>%
   as.data.frame()
 
-write.csv(MCF.2,"MCF.2.csv",row.names = FALSE)
-write.csv(MCF.h,"MCF.high.csv",row.names = FALSE)
-write.csv(MCF.l,"MCF.low.csv",row.names = FALSE)
+# write.csv(MCF.2,"MCF.2.csv",row.names = FALSE)
+# write.csv(MCF.h,"MCF.high.csv",row.names = FALSE)
+# write.csv(MCF.l,"MCF.low.csv",row.names = FALSE)
+
+MCF.2<-read.csv("MCF.2.csv",header=TRUE)
+MCF.h<-read.csv("MCF.high.csv",header=TRUE) 
+MCF.l<-read.csv("MCF.low.csv",header=TRUE) 
+
+MCF<-MCF.2 %>%
+    merge(MCF.h) %>%
+    merge(MCF.l)
+
+MCF$range.h<-(MCF$MCF.h/MCF$MCF.2-1)*100
+MCF$range.l<-(MCF$MCF.l/MCF$MCF.2-1)*100
+
+summary(MCF$range.h)
+summary(MCF$range.l)
+
+#To obtain natioal average MCF for the high, regular and low scenarios. 
+MCF.avg<-data.frame(year=seq(1990,2019),
+                    MCF2=rep(0,30),
+                    MCFH=rep(0,30),
+                    MCFL=rep(0,30))
+for(i in 3:5) { 
+MCF.avg[,i-1]<-tapply(MCF[,i],MCF$year,mean)
+}
+
+#Plot the results
+plot(MCF.avg$year,MCF.avg$MCF2,
+     ylim=c(0.14,0.28),xlab="Year",
+     ylab="Methane Conversion Factor (MCF)",
+     yaxs="i",las=1)
+arrows(MCF.avg$year,MCF.avg$MCFH,MCF.avg$year,MCF.avg$MCFL,
+       length = 0.05,angle=90,code=3)
+text(1990,0.28,"(B)",pos=1)
+legend(1990,0.27,
+       c("Average natioanl MCF",
+         "95% Confidence Interval"),
+       bty="n",pch=c(1,NA),lty=c(NA,1))
 
 #Put the results in a table
 results<-as.data.frame(rbind(summary(MCF.high),summary(MCF.low),summary(MCF.2)))
