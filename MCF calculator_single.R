@@ -8,6 +8,8 @@
 #f_Tmin: minimum temperature, user input
 #T.sel: manure temperature at selected month
 #function to calculate f, rounded
+#library(weathermetrics) #convert C to K
+
 v.hoff<- function(f_T2){
   round(exp((f_Ea*(f_T2-f_T1))/(f_R*f_T2*f_T1)),3)
 }
@@ -57,13 +59,7 @@ for (i in 1:36) {
     VS_con[i]<-VS_ava[i]*f.m[i]
      }
   temp[i]<-VS_con[i]*B0
-
-  CH4.potential<-sum(VS_loaded)*B0
-
   CH4.potential<-sum(VS_loaded[25:36])*B0
-
-  CH4.potential<-sum(VS_loaded[25:36])*B0
-
   CH4_sel<-round(sum(temp[25:36]),3)
   MCF<-round(CH4_sel/CH4.potential,3)
 }
@@ -71,5 +67,5 @@ for (i in 1:36) {
 #To know the CH4 production for every month
 #print(paste("monthly CH4 in third year",month.abb,round(temp[25:36],1)))
 #To print the result
-cat(paste("total CH4 in third year:",CH4_sel,"\n"
-          ,"MCF:",MCF))
+#cat(paste("total CH4 in third year:",CH4_sel,"\n"
+#          ,"MCF:",MCF))
