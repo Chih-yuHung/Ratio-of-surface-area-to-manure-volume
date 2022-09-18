@@ -1,70 +1,3 @@
-#My first code March 10th
-
-Articles<-read.csv("Manure Linear Regression.csv")
-
-
-# Calculations for swedendata
-# Warmest manure temperature = June: 17.206099 but we'll use July 
-# because June is semi-data. In this case:
-# Warmest manure temperature = July: 16.053723
-# Warmest Air Temperature = August : 16.338710
-16.053723-16.338710
-# dif =  -0.284987 = -0.28
-
-#Surface area = (20/2)^2*PI
-
-swedensurfacearea = pi * 100
-list(swedensurfacearea)
-
-#Surface/ Manure Volume(warmest manure's volume) Ratio
-
-# Volume in July : 256.3362 m3
-
-SVratio = 314.1593/256.3362
-list(SVratio)
-# SVratio = 1.225575
-
-#New row adding
-
-newRow<-data.frame(ID= "22", 
-                    Latitude = "NA",
-                    Longitude = "NA",
-                    Year = "2020-2021",
-                    Surface.area..m2. = "314.16",
-                    Manure.volume..m3. = "256.34",
-                    SV= "1.23",
-                    Highest.air.temperature = "NA",
-                    Highest.manure.temperature = "NA",
-                    dif = "-0.28",
-                    Lowest.air.temperature = "NA",
-                    Lowest.manure.temperature = "NA",
-                    dif_low = "NA",
-                    doi = "sweden data")
-print(newRow)                    
-
-#rbind
-
-Articles<- rbind(Articles, newRow)
-print(Articles)
-
-#plot
-
-plot(Articles$SV, Articles$dif)
-
-model.SV <- lm(dif~SV,data=Articles)
-
-prediction<-data.frame(SV=seq(-1,1.5, length=50))
-#plot simple linear regression model
-
-plot(Articles$SV, Articles$dif)
-
-
-lines(prediction$SV, predict(model.SV,newdata = prediction))
-
-View(Articles)
-
-
-
 #See below for CY's code
 library(ggplot2)
 library(ggpubr)
@@ -85,28 +18,34 @@ Temp<-Temp[c(-6,-9),]
 Temp.cor<-cor.test(Temp$SV,Temp$dif)
 R<-round(Temp.cor$estimate,3) #0.795
 p.value<-round(Temp.cor$p.value,3) #0.033
+
+#Obtain the bootstrapped results
+# I run this before "MCF estimate with bootstraped CI.R" to obtain bootstrap result
+new<-data.frame(SV=seq(0.33,0.49,length.out=10000))
+temp.predict<-predict.lm(temp.lm,new,interval="confidence")
+
 #scatter plot and linear model
 #Output 800 x 600
-ggplot(aes(x=SV,y=dif),data=Temp)+
-  geom_point(aes(shape=type),size=4)+
-  theme_classic()+                                               # remove gray background
-  xlim(0.32,0.50)+                                           #set xy limit
-  ylim(-5,4)+
-  theme(legend.position=c(0.2,0.80),                        #legend position
-        axis.title.y = element_text(margin = margin(r = 7), #y lab position and size
-                                    size=14),
-        axis.title.x = element_text(margin = margin(t = 7), #x lab
-                                    size=14),
-        axis.text = element_text(size=12),                  #font size of x,y 
-        legend.text = element_text(size=12),                #font size of legend
-        legend.title = element_blank())+                    #remove legend title
-  xlab(expression("Surface area / manure volume ("~m^-1~")"))+                 # set xy label
-  ylab(expression("T"["diff"]~"(°C)"))+
-  geom_smooth(method='lm', se=FALSE,color="black")+         #add linear regression
-  #annotate("text", label = paste("y = ", a ," + ",
-  #                      b,"x", sep = ""),x = 0.33,y=0.5, size = 5) +
-  annotate("text", label = "atop(R == 0.795,italic(P) == 0.033)" ,x = 0.33,y=-0.2, size = 5,parse=TRUE)+
-  annotate("text",x=0.32,y=3.6,label="(b)")
+# ggplot(aes(x=SV,y=dif),data=Temp)+
+#   geom_point(aes(shape=type),size=4)+
+#   theme_classic()+                                               # remove gray background
+#   xlim(0.32,0.50)+                                           #set xy limit
+#   ylim(-5,4)+
+#   theme(legend.position=c(0.2,0.80),                        #legend position
+#         axis.title.y = element_text(margin = margin(r = 7), #y lab position and size
+#                                     size=14),
+#         axis.title.x = element_text(margin = margin(t = 7), #x lab
+#                                     size=14),
+#         axis.text = element_text(size=12),                  #font size of x,y 
+#         legend.text = element_text(size=12),                #font size of legend
+#         legend.title = element_blank())+                    #remove legend title
+#   xlab(expression("Surface area / manure volume ("~m^-1~")"))+                 # set xy label
+#   ylab(expression("T"["diff"]~"(°C)"))+
+#   geom_smooth(method='lm', se=FALSE,color="black")+         #add linear regression
+#   #annotate("text", label = paste("y = ", a ," + ",
+#   #                      b,"x", sep = ""),x = 0.33,y=0.5, size = 5) +
+#   annotate("text", label = "atop(R == 0.795,italic(P) == 0.033)" ,x = 0.33,y=-0.2, size = 5,parse=TRUE)+
+#   annotate("text",x=0.32,y=3.6,label="(b)")
 
 #Replot because I want to combine the two figures together
 #The other figure is the simulation results.
@@ -119,6 +58,9 @@ plot(0,
      xlim=c(0.32,0.50),
      ylim=c(-5.0,4),
      cex.lab=1.3)
+polygon(c(rev(new[,1]), new[,1]), c(rev(temp.predict[ ,3]), temp.predict[ ,2]), col = 'grey90', border = NA)
+lines(new[,1],temp.predict[,2],lty = 'dashed', col = 'red')
+lines(new[,1],temp.predict[,3],lty = 'dashed', col = 'red')
 points(Temp$SV[Temp$type=="Tank"],Temp$dif[Temp$type=="Tank"],pch=17,cex=1.3)
 points(Temp$SV[Temp$type=="Earthen storage"],Temp$dif[Temp$type=="Earthen storage"],pch=16,cex=1.3)
 abline(lm(Temp$dif~Temp$SV))

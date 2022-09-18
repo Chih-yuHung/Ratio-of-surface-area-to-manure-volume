@@ -29,7 +29,7 @@ Boot.SV.mean<-colMeans(Boot.SV)
 
 #We're going to apply this to the linear regression 
 #and obtain 95% CI for the temperature difference
-temp.lm<-lm(dif~SV,data=ratio)
+temp.lm<-lm(dif~SV,data=ratio)#y = 42.3x-18.4
 new<-data.frame(SV=Boot.SV.mean)
 #The possible differecne of the 10000 bootstrap
 temp.predict<-predict.lm(temp.lm,new,interval="confidence")

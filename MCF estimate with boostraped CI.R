@@ -2,6 +2,7 @@
 #ratio of manure surface to volume
 
 library(boot)
+library(data.table)
 
 ratio<-read.csv("Manure Linear Regression.csv")
 ratio<-ratio[c(-6,-9),] #9 is from Sweden
@@ -35,7 +36,7 @@ temp.dif<-c(low,up)#it's the lowest dif and highest dif
 #Now we can use the MCF calculator to see the change of MCF
 
 #T.avg.m<-read.table("monthly avg T.txt",header=TRUE) # monthly average
-T.avg<-read.table("1990-2019 monthly avg T.txt",header=TRUE) #gigantic table for avg. T for 3403 locations and 30years
+T.avg<-as.data.frame(fread("monthly avg T.txt"))
 #This is an R procedure example how to calculate MCF for different locations. 
 library(weathermetrics) #convert C to K
 

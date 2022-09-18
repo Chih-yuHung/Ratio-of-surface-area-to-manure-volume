@@ -30,15 +30,15 @@ lines(c(1:12),Tm,type="b")
 lines(c(1:12),Tm.H,type="b",col="blue")
 lines(c(1:12),Tm.L,type="b",col="grey")
 legend(1,28,c("original, MCF = 0.23",
-              "upper limit, MCF = 0.24",
-              "lower limit, MCF = 0.19")
+              "Rs:v = 0.417, MCF = 0.24",
+              "Rs:v = 0.390, MCF = 0.19")
        ,col=c("black","blue","grey"),lty=c(1,1,1),
        bty="n",title="Manure temperature")
-legend(1.3,22,c("original","upper limit","lower limit")
+legend(1.3,22,c("original","Rs:v = 0.417","Rs:v = 0.390")
        ,fill=c("white","blue","grey")
        ,density=c(100,20,20),angle=c(0,135,45)
        ,bty="n",title="Methane production")
-text(1.3,30,"(A)",pos=1)
+text(1.3,30,"(A)",pos=1,cex=1.5)
 
 # text(8.2,23,"MCF = 0.24")
 # text(8.2,17,"MCF = 0.23")

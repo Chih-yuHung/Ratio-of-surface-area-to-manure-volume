@@ -3,6 +3,7 @@
 #By using the monthy avg. T from 1990-2019, similar to NIR
 library(boot)
 library(tidyverse)
+library(data.table)
 
 ratio<-read.csv("Manure Linear Regression.csv")
 ratio<-ratio[c(-6,-9),] #9 is from Sweden
