@@ -26,4 +26,4 @@ hist(MCF2019.vector,freq=FALSE,main=NA,
      xlim=c(0.1,0.35),ylim=c(0,15),cex.lab=1.5,
      col=NA)
 lines(MCF2019.density,lwd=2,col="black")
-text(0.1,15,"(B)",pos=1,cex=1.5)
+text(0.1,15,"(b)",pos=1,cex=1.5)

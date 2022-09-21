@@ -38,7 +38,7 @@ legend(1.3,22,c("original","Rs:v = 0.417","Rs:v = 0.390")
        ,fill=c("white","blue","grey")
        ,density=c(100,20,20),angle=c(0,135,45)
        ,bty="n",title="Methane production")
-text(1.3,30,"(A)",pos=1,cex=1.5)
+text(1.3,30,"(a)",pos=1,cex=1.5)
 
 # text(8.2,23,"MCF = 0.24")
 # text(8.2,17,"MCF = 0.23")
