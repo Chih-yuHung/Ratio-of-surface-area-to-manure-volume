@@ -72,6 +72,6 @@ legend(0.50,-3,pch=c(17,16),c("Tank","Earthen Storage"),
        bty="n",cex=1.3)
 legend(0.497,-3.9,fill="grey90","95% confidence interval",
        bty="n",cex=1.3)
-text(Temp$SV+0.007,Temp$dif+0.02,labels = Temp$TableID,cex=1.3)                          
+text(Temp$SV+0.009,Temp$dif+0.02,labels = Temp$TableID,cex=1.3)                          
                            
                            

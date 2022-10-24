@@ -21,8 +21,8 @@ Boot.SV<-matrix(sample(ratio$SV,size=B*SV.n,
 Boot.SV.mean<-colMeans(Boot.SV)
  
 #Obtain the percentile
-#Boot.low<-quantile(Boot.SV.mean,prob=0.025,names=FALSE) #0.443
-#Boot.up<-quantile(Boot.SV.mean,prob=0.975,names=FALSE) #0.513
+Boot.low<-quantile(Boot.SV.mean,prob=0.025,names=FALSE) #0.443
+Boot.up<-quantile(Boot.SV.mean,prob=0.975,names=FALSE) #0.513
 
 #We're going to apply this to the linear regression 
 #and obtain 95% CI for the temperature difference

@@ -13,10 +13,10 @@ for (i in 2:5) {
 
 #Turn list data to vector
 MCF2019.vector<-as.numeric(MCF2019[c(1:length(MCF2019))])
-summary(MCF2019.vector) #min =0.101, median=0.187,mean 0.187
-                        #max = 0.305
-MCF2019.low<-quantile(MCF2019.vector,prob=0.025,names=FALSE) #0.133
-MCF2019.high<-quantile(MCF2019.vector,prob=0.975,names=FALSE) #0.254
+summary(MCF2019.vector) #min =0.110, median=0.204,mean 0.203
+                        #max = 0.322
+MCF2019.low<-quantile(MCF2019.vector,prob=0.025,names=FALSE) #0.145
+MCF2019.high<-quantile(MCF2019.vector,prob=0.975,names=FALSE) #0.275
 MCF2019.density<-density(MCF2019.vector)
 
 par(mar=c(4,5,1,4))

@@ -2,11 +2,11 @@
 #The data is from the sheet:MCF sheet_Fig 4A. 
 #The manure temperature increase for 3 months. 
 Tm<-c(1.0,1.0,1.0,1.0,5.0,12.0,17.3,20.5,17.9,15.7,8.2,1.2)
-Tm.H<-c(1.0,1.0,1.0,1.0,5.0,12.0,18.02,21.22,18.62,15.7,8.2,1.2)
-Tm.L<-c(1.0,1.0,1.0,1.0,5.0,12.0,13.96,17.16,14.56,15.7,8.2,1.2)
-CH4  <-c(2.2,2.6,3,0.6,1.8,6,13.8,22.2,4.4,5.7,3.2,1.8)/2
-CH4.H<-c(2.2,2.6,3,0.6,1.8,6,15.0,23.7,4.7,5.7,3.2,1.7)/2
-CH4.L  <-c(2.2,2.6,3.1,0.6,1.8,6,9.4,15.7,3.0,6.0,3.4,1.8)/2
+Tm.H<-c(1.0,1.0,1.0,1.0,5.0,12.0,18.4,21.8,19.2,15.7,8.2,1.2)
+Tm.L<-c(1.0,1.0,1.0,1.0,5.0,12.0,16.2,19.4,16.8,15.7,8.2,1.2)
+CH4  <-c(1.8,2.3,2.7,0.6,1.8,6,13.7,22.0,16.6,3.4,2.4,1.4)/2
+CH4.H<-c(2.3,2.7,3,0.6,1.8,6,15.6,25.0,18.6,3.4,2.4,1.4)/2
+CH4.L  <-c(1.9,2.3,2.7,0.6,1.8,6.0,12.1,19.7,15.2,3.5,2.4,1.4)/2
 #Output 800 x 600
 par(mar=c(4,5,1,4))
 plot(0,type="n",xlim=c(1,12),ylim=c(0,30),
@@ -29,12 +29,12 @@ polygon(c(c(1:12),c(12:1)),c(CH4.L,rep(0,12))
 lines(c(1:12),Tm,type="b")
 lines(c(1:12),Tm.H,type="b",col="blue")
 lines(c(1:12),Tm.L,type="b",col="grey")
-legend(1,28,c("original, MCF = 0.23",
-              "Rs:v = 0.417, MCF = 0.24",
-              "Rs:v = 0.390, MCF = 0.19")
-       ,col=c("black","blue","grey"),lty=c(1,1,1),
-       bty="n",title="Manure temperature")
-legend(1.3,22,c("original","Rs:v = 0.417","Rs:v = 0.390")
+legend(1,28,c("original, MCF = 0.26",
+              "Rs:v = 0.63, MCF = 0.28",
+              "Rs:v = 0.34, MCF = 0.24")
+       ,col=c("black","blue","grey"),lty=c(1,1,1),lwd=2
+       ,bty="n",title="Manure temperature")
+legend(1.3,22,c("original","Rs:v = 0.63","Rs:v = 0.34")
        ,fill=c("white","blue","grey")
        ,density=c(100,20,20),angle=c(0,135,45)
        ,bty="n",title="Methane production")
