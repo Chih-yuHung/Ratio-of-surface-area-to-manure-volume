@@ -18,17 +18,20 @@ axis(4,at=seq(0,30,5),labels=seq(0,60,10),
      las=1)
 mtext(expression("Methane production ("~m^3~")"),
       side=4,line=3,cex=1.5)
-polygon(c(c(1:12),c(12:1)),c(CH4.H,rep(0,12))
-        ,col="blue"
-        ,density=10,angle=135)
-polygon(c(c(1:12),c(12:1)),c(CH4,rep(0,12))
-        ,col="white")
-polygon(c(c(1:12),c(12:1)),c(CH4.L,rep(0,12))
-        ,col="grey"
-        ,density=10,aggle=45)
-lines(c(1:12),Tm,type="b")
-lines(c(1:12),Tm.H,type="b",col="blue")
-lines(c(1:12),Tm.L,type="b",col="grey")
+polygon(c(1:12,12,1),
+        c(CH4.H,0,0),
+        col = "blue",
+        density = 10,angle = 135)
+polygon(c(1:12,12,1),
+        c(CH4,0,0),
+        col = "white")
+polygon(c(1:12,12,1),
+        c(CH4.L,0,0),
+        col = "grey",type = "s",
+        density = 50,aggle = 45)
+lines(c(1:12),Tm,type="s")
+lines(c(1:12),Tm.H,type="s",col="blue")
+lines(c(1:12),Tm.L,type="s",col="grey")
 legend(1,28,c("original, MCF = 0.26",
               "Rs:v = 0.63, MCF = 0.28",
               "Rs:v = 0.34, MCF = 0.24")
@@ -36,7 +39,7 @@ legend(1,28,c("original, MCF = 0.26",
        ,bty="n",title="Manure temperature")
 legend(1.3,22,c("original","Rs:v = 0.63","Rs:v = 0.34")
        ,fill=c("white","blue","grey")
-       ,density=c(100,20,20),angle=c(0,135,45)
+       ,density=c(100,20,50),angle=c(0,135,45)
        ,bty="n",title="Methane production")
 #text(1.3,30,"(a)",pos=1,cex=1.5)
 
@@ -45,4 +48,4 @@ legend(1.3,22,c("original","Rs:v = 0.63","Rs:v = 0.34")
 # text(8.2,14,"MCF = 0.19")
 #arrows(8,22.5,8,20.5,length=0.03, angle=90)
 
-
+polygon(c(1,2,2,3,3,2,2,1),c(5,5,8,8,0,0,0,0))

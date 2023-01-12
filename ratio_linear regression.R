@@ -2,7 +2,7 @@
 library(ggplot2)
 library(ggpubr)
 
-Temp<-read.csv("C:/Users/hungc/OneDrive - AGR-AGR/AAFC/Project 7_surface area ratio/2_mehtods/R/Ratio-of-surface-area-to-manure-volume/Manure Linear Regression.csv")
+Temp<-read.csv("Manure Linear Regression.csv")
 #I received information that 9 removed manure just before summer,
 #the removal significantly decreased the manure volume and influence the result
 #CY, March 27, 2022
