@@ -1,5 +1,5 @@
 #To create a figure to demonstrate the influence of temperature on MCF
-#The data is from the sheet:MCF sheet_Fig 4A. 
+#The data is from the sheet:MCF sheet_Fig 4. 
 #The manure temperature increase for 3 months. 
 Tm<-c(1.0,1.0,1.0,1.0,5.0,12.0,17.3,20.5,17.9,15.7,8.2,1.2)
 Tm.H<-c(1.0,1.0,1.0,1.0,5.0,12.0,18.4,21.8,19.2,15.7,8.2,1.2)

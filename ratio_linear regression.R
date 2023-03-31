@@ -1,13 +1,9 @@
-#See below for CY's code
 library(ggplot2)
 library(ggpubr)
 
 Temp<-read.csv("Manure Linear Regression.csv")
 #I received information that 9 removed manure just before summer,
 #the removal significantly decreased the manure volume and influence the result
-#CY, March 27, 2022
-#Temp<-Temp[c(-6,-9),]
-#I removed the data in the csv file, Oct 5, 2022. 
 #Latest data has 3 set data from Fraser farm from 2017-2019
 
 #Linear regression and plot
@@ -24,29 +20,6 @@ p.value<-round(Temp.cor$p.value,3) #0.064
 # I run this before "MCF estimate with bootstraped CI.R" to obtain bootstrap result
 new<-data.frame(SV=seq(0.33,0.68,length.out=10000))
 temp.predict<-predict.lm(Temp.lm,new,interval="confidence")
-
-#scatter plot and linear model
-#Output 800 x 600
-# ggplot(aes(x=SV,y=dif),data=Temp)+
-#   geom_point(aes(shape=type),size=4)+
-#   theme_classic()+                                               # remove gray background
-#   xlim(0.32,0.50)+                                           #set xy limit
-#   ylim(-5,4)+
-#   theme(legend.position=c(0.2,0.80),                        #legend position
-#         axis.title.y = element_text(margin = margin(r = 7), #y lab position and size
-#                                     size=14),
-#         axis.title.x = element_text(margin = margin(t = 7), #x lab
-#                                     size=14),
-#         axis.text = element_text(size=12),                  #font size of x,y 
-#         legend.text = element_text(size=12),                #font size of legend
-#         legend.title = element_blank())+                    #remove legend title
-#   xlab(expression("Surface area / manure volume ("~m^-1~")"))+                 # set xy label
-#   ylab(expression("T"["diff"]~"(°C)"))+
-#   geom_smooth(method='lm', se=FALSE,color="black")+         #add linear regression
-#   #annotate("text", label = paste("y = ", a ," + ",
-#   #                      b,"x", sep = ""),x = 0.33,y=0.5, size = 5) +
-#   annotate("text", label = "atop(R == 0.795,italic(P) == 0.033)" ,x = 0.33,y=-0.2, size = 5,parse=TRUE)+
-#   annotate("text",x=0.32,y=3.6,label="(b)")
 
 #Replot because I want to combine the two figures together
 #The other figure is the simulation results.
