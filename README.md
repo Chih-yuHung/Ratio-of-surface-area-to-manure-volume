@@ -1,5 +1,5 @@
 # Ratio-of-surface-area-to-manure-volume
-This repository is to provide the results in "Perspectives on peak liquid manure temperature with implications for methane emissions" in Journal of Environmental Quality, authored by Chih-Yu Hung, Efe Kemal Koc, Brian Grant, Ward Smith, and Andrew VanderZaag. The DOI will be provided when it is available.  
+This repository provides the results in "Perspectives on peak liquid manure temperature with implications for methane emissions" in Journal of Environmental Quality, authored by Chih-Yu Hung, Efe Kemal Koc, Brian Grant, Ward Smith, and Andrew VanderZaag. The DOI will be provided when it is available.  
 
 ## Fig  1
 **Plot MCF difference_figure 1.R** provides the script to create Figure 1. The data was from **MCF sheet_Fig 1.xlsx**. 
